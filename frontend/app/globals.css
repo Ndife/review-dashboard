@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 10, 10, 10;
+  --background-end-rgb: 20, 20, 20;
+
+  /* Glassmorphism variables */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  
+  --glass-card-bg: rgba(30, 30, 30, 0.6);
+  --glass-card-border: rgba(255, 255, 255, 0.08);
+  --glass-card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  font-family: var(--font-inter), sans-serif;
+  min-height: 100vh;
+}
+
+/* Glassmorphism utility */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+}
+
+.glass-card {
+    background: var(--glass-card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-card-border);
+    box-shadow: var(--glass-card-shadow);
+}
