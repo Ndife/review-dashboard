@@ -4,6 +4,8 @@
 
 A full-stack solution for managing property reviews. It features a modern Manager Dashboard, a public Property Listing page, and a robust Backend service integrated with Hostaway (mocked).
 
+[**🚀 View Live Demo**](https://review-dashboard-tscm.vercel.app/)
+
 ---
 
 ## 🚀 Local Setup Instructions
