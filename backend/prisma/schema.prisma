@@ -1,0 +1,24 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Review {
+  id          Int      @id
+  listingName String
+  guestName   String
+  content     String?
+  rating      Float?
+  categories  Json
+  submittedAt DateTime
+  type        String
+  isPublic    Boolean  @default(false)
+
+  @@index([isPublic, submittedAt])
+  @@index([rating])
+  @@map("reviews")
+}
