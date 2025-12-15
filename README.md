@@ -144,3 +144,31 @@ If this were a real production application, the following would be immediate nex
 1.  **Authentication & Authorization**: Currently, the dashboard is open. I would implement **NextAuth.js** (frontend) and **Passport.js/JWT Guards** (backend) to restrict access to `POST`/`PATCH` endpoints.
 2.  **E2E Testing**: Add Cypress or Playwright tests to validate the full "View Listing -> Visit Dashboard -> Hide Review -> Verify Listing" flow.
 3.  **SWR/React Query**: Replace `useEffect` fetching with a dedicated data-fetching library for better caching and revalidation.
+
+---
+
+## 📦 Deployment
+
+### Backend (Docker)
+
+The backend includes a production-ready `Dockerfile`. You can deploy it to any container hosting platform (Render, Railway, AWS ECS, DigitalOcean App Platform).
+
+**Build & Run Locally:**
+
+```bash
+cd backend
+# Build the image
+docker build -t flex-backend .
+# Run the container (mapping port 3001)
+docker run -p 3001:3001 --env-file .env flex-backend
+```
+
+### Frontend (Vercel)
+
+The frontend is optimized for Vercel.
+
+1.  Push repo to GitHub.
+2.  Import project in Vercel.
+3.  Set `Root Directory` to `frontend`.
+4.  Add environment variables (e.g., `NEXT_PUBLIC_API_URL`).
+5.  Deploy!
