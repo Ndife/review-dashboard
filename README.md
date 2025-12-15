@@ -134,3 +134,13 @@ Updates the `isPublic` status of a review.
     - **Quotas**: The Places API is expensive and rate-limited.
     - **Staleness**: Google reviews don't update instantly.
 4.  **Recommendation**: Implement a nightly cron job in the NestJS backend to sync Google Reviews into our Postgres `Review` table, normalizing them to match the Hostaway schema (Scale 1-5 -> Scale 1-10). This avoids hitting the Google API on every page load.
+
+---
+
+## 🔮 Future Improvements (Production Readiness)
+
+If this were a real production application, the following would be immediate next steps:
+
+1.  **Authentication & Authorization**: Currently, the dashboard is open. I would implement **NextAuth.js** (frontend) and **Passport.js/JWT Guards** (backend) to restrict access to `POST`/`PATCH` endpoints.
+2.  **E2E Testing**: Add Cypress or Playwright tests to validate the full "View Listing -> Visit Dashboard -> Hide Review -> Verify Listing" flow.
+3.  **SWR/React Query**: Replace `useEffect` fetching with a dedicated data-fetching library for better caching and revalidation.
