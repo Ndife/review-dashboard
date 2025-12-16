@@ -11,9 +11,9 @@ interface ReviewCardProps {
 export const ReviewCard: React.FC<ReviewCardProps> = ({ review, onToggleVisibility }) => {
   return (
     <div className="glass-card p-6 rounded-2xl hover:bg-white/5 transition-all duration-300">
-      <div className="flex justify-between items-start">
-        <div className="space-y-2">
-          <div className="flex items-center gap-3">
+      <div className="flex flex-col md:flex-row justify-between items-start gap-4">
+        <div className="space-y-2 w-full">
+          <div className="flex flex-wrap items-center gap-3">
             <span
               className={clsx(
                 'px-2 py-0.5 rounded text-xs font-semibold uppercase tracking-wider',
@@ -40,7 +40,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ review, onToggleVisibili
           onClick={() => onToggleVisibility(review.id, review.isPublic)}
           variant="outline"
           className={clsx(
-            'flex items-center gap-2 h-9 text-sm font-medium transition-all duration-200 border bg-transparent',
+            'flex items-center justify-center gap-2 h-9 text-sm font-medium transition-all duration-200 border bg-transparent w-full md:w-auto mt-2 md:mt-0',
             review.isPublic
               ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400 hover:bg-indigo-500/20 hover:text-indigo-400'
               : 'bg-neutral-800/50 border-neutral-700 text-neutral-400 hover:text-white hover:bg-neutral-800 hover:border-neutral-600'
