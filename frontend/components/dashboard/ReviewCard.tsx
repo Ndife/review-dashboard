@@ -1,5 +1,6 @@
 import { Review } from '@/types';
 import { Button } from '../ui/Button';
+import { Badge } from '../ui/Badge';
 import { Eye, EyeOff } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -14,17 +15,9 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ review, onToggleVisibili
       <div className="flex flex-col md:flex-row justify-between items-start gap-4">
         <div className="space-y-2 w-full">
           <div className="flex flex-wrap items-center gap-3">
-            <span
-              className={clsx(
-                'px-2 py-0.5 rounded text-xs font-semibold uppercase tracking-wider',
-                {
-                  'bg-green-500/10 text-green-400': review.rating && review.rating >= 4,
-                  'bg-yellow-500/10 text-yellow-400': review.rating && review.rating < 4,
-                }
-              )}
-            >
+            <Badge variant={review.rating && review.rating >= 4 ? 'success' : 'warning'}>
               {review.rating || 'N/A'} / 10
-            </span>
+            </Badge>
             <span className="text-neutral-400 text-sm">
               {new Date(review.submittedAt).toLocaleDateString()}
             </span>
