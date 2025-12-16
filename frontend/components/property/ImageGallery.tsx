@@ -51,8 +51,8 @@ export const ImageGallery = ({ photos, isOpen, onClose, initialIndex = 0 }: Imag
         data-state="open"
       >
         {/* Top Bar */}
-        <div className="flex justify-between items-center p-4 md:p-6 text-white shrink-0">
-          <div className="text-lg font-medium">
+        <div className="flex flex-row-reverse md:flex-row justify-between items-center p-4 md:p-6 text-white shrink-0">
+          <div className="text-sm md:text-lg font-medium bg-neutral-800/50 md:bg-transparent rounded-full px-4 py-1 md:p-0">
             {currentIndex + 1} / {photos.length}
           </div>
           <Button
@@ -68,22 +68,23 @@ export const ImageGallery = ({ photos, isOpen, onClose, initialIndex = 0 }: Imag
         {/* Main Content Area */}
         <div className="flex-1 relative flex items-center justify-center min-h-0 w-full overflow-hidden">
           {/* Navigation Buttons */}
+          {/* Navigation Buttons */}
           <Button
             variant="ghost"
             size="icon"
             onClick={handlePrev}
-            className="absolute left-42 z-10 text-white hover:bg-white/10 rounded-full h-12 w-12 hidden md:flex"
+            className="absolute left-4 md:left-10 z-50 text-white bg-black/20 hover:bg-black/40 rounded-full h-12 w-12 flex"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-6 h-6" />
           </Button>
 
           <Button
             variant="ghost"
             size="icon"
             onClick={handleNext}
-            className="absolute right-42 z-10 text-white hover:bg-white/10 rounded-full h-12 w-12 hidden md:flex"
+            className="absolute right-4 md:right-10 z-50 text-white bg-black/20 hover:bg-black/40 rounded-full h-12 w-12 flex"
           >
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-6 h-6" />
           </Button>
 
           {/* Main Image */}

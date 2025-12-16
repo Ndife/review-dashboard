@@ -3,6 +3,7 @@ import Image from 'next/image';
 import clsx from 'clsx';
 import { Button } from '../ui/Button';
 import { ImageGallery } from './ImageGallery';
+import { ArrowLeft, ArrowRight, Expand } from 'lucide-react';
 
 // ... (image components)
 
@@ -44,10 +45,21 @@ export const PhotoGrid: React.FC<PhotoGridProps> = ({ photos }) => {
 
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const [currentCoverIndex, setCurrentCoverIndex] = useState(0);
 
   const openGallery = (index: number) => {
     setCurrentPhotoIndex(index);
     setIsGalleryOpen(true);
+  };
+
+  const handleNextCover = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentCoverIndex((prev) => (prev + 1) % photos.length);
+  };
+
+  const handlePrevCover = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentCoverIndex((prev) => (prev - 1 + photos.length) % photos.length);
   };
 
   return (
@@ -57,12 +69,45 @@ export const PhotoGrid: React.FC<PhotoGridProps> = ({ photos }) => {
           {/* Main Large Image - First Item */}
           <div
             className="col-span-1 md:col-span-2 md:row-span-2 relative group cursor-pointer overflow-hidden"
-            onClick={() => openGallery(0)}
+            onClick={() => openGallery(currentCoverIndex)}
           >
-            {displayPhotos[0] && (
-              <SafeImage src={displayPhotos[0]} alt="Property main view" priority />
+            {photos[currentCoverIndex] && (
+              <SafeImage src={photos[currentCoverIndex]} alt="Property main view" priority />
             )}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+
+            {/* Mobile Navigation Arrows */}
+            <div className="md:hidden">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handlePrevCover}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 text-white bg-black/20 hover:bg-black/40 rounded-full h-10 w-10 flex"
+              >
+                <ArrowLeft className="w-5 h-5" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleNextCover}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 text-white bg-black/20 hover:bg-black/40 rounded-full h-10 w-10 flex"
+              >
+                <ArrowRight className="w-5 h-5" />
+              </Button>
+            </div>
+
+            {/* View All Button with Zoom Icon */}
+            <Button
+              size="sm"
+              className="absolute bottom-4 left-4 bg-white/90 backdrop-blur text-[#284E4C] hover:bg-white shadow-lg z-20 font-semibold h-auto py-2 px-4 gap-2 md:hidden flex"
+              onClick={(e) => {
+                e.stopPropagation();
+                openGallery(currentCoverIndex);
+              }}
+            >
+              <Expand className="w-4 h-4" />
+              View all photos
+            </Button>
           </div>
 
           {/* Secondary Images - Next 4 Items */}
@@ -78,12 +123,13 @@ export const PhotoGrid: React.FC<PhotoGridProps> = ({ photos }) => {
               {index === 3 && (
                 <Button
                   size="sm"
-                  className="absolute bottom-4 right-4 bg-white/90 backdrop-blur text-[#284E4C] hover:bg-white shadow-lg z-10 font-semibold h-auto py-2 px-4"
+                  className="absolute bottom-4 right-4 bg-white/90 backdrop-blur text-[#284E4C] hover:bg-white shadow-lg z-10 font-semibold h-auto py-2 px-4 flex gap-2"
                   onClick={(e) => {
                     e.stopPropagation();
                     openGallery(0);
                   }}
                 >
+                  <Expand className="w-4 h-4" />
                   View all photos
                 </Button>
               )}
