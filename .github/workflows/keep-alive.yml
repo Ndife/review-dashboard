@@ -1,0 +1,18 @@
+name: Keep Alive
+
+on:
+  schedule:
+    - cron: '*/14 * * * *' # Run every 14 minutes (Render sleeps after 15m)
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Backend
+        # Pings the backend to keep it awake.
+        # Ensure you add BACKEND_URL to your repository secrets,
+        # or replace the fallback URL with your actual backend URL.
+        run: |
+          echo "Pinging backend..."
+          curl -I ${{ secrets.BACKEND_URL || 'https://review-dashboard-7e13.onrender.com' }}
