@@ -6,6 +6,8 @@ A full-stack solution for managing property reviews. It features a modern Manage
 
 [**🚀 View Live Demo**](https://review-dashboard-tscm.vercel.app/)
 
+> **⚠️ Note on Cold Start**: The backend is hosted on Render's free tier, which spins down after inactivity. The first request may take **50-60 seconds** to wake up. If reviews don't load immediately, please wait a minute or run the project locally.
+
 ---
 
 ## 🚀 Local Setup Instructions
@@ -151,7 +153,13 @@ If this were a real production application, the following would be immediate nex
 
 ## 📦 Deployment
 
-### Backend (Docker)
+This project is deployed using a modern serverless/containerized stack:
+
+- **Frontend**: Vercel (Next.js)
+- **Backend**: Render (Docker Container)
+- **Database**: Neon (Serverless PostgreSQL)
+
+### Backend (Render)
 
 The backend includes a production-ready `Dockerfile`. You can deploy it to any container hosting platform (Render, Railway, AWS ECS, DigitalOcean App Platform).
 
