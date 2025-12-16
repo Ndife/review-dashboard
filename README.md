@@ -6,7 +6,7 @@ A full-stack solution for managing property reviews. It features a modern Manage
 
 [**🚀 View Live Demo**](https://review-dashboard-tscm.vercel.app/)
 
-> **⚠️ Note on Cold Start**: The backend is hosted on Render's free tier, which spins down after inactivity. The first request may take **50-60 seconds** to wake up. If reviews don't load immediately, please wait a minute or run the project locally.
+> **⚠️ Note on Cold Start**: The backend is hosted on Render's free tier. To mitigate sleep inactivity (after 15 mins), a **GitHub Action** is configured to ping the service every 14 minutes. If reviews don't load immediately, please wait a minute as the service wakes up, or run the project locally.
 
 ---
 
@@ -162,6 +162,9 @@ This project is deployed using a modern serverless/containerized stack:
 ### Backend (Render)
 
 The backend includes a production-ready `Dockerfile`. You can deploy it to any container hosting platform (Render, Railway, AWS ECS, DigitalOcean App Platform).
+
+**Keep-Alive Strategy:**
+To prevent Render's free tier from sleeping, a GitHub Action (`.github/workflows/keep-alive.yml`) runs every 14 minutes to ping the backend health endpoint. This ensures the dashboard is always responsive.
 
 **Build & Run Locally:**
 
